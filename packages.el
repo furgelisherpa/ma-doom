@@ -13,4 +13,5 @@
 (package! sql-indent)
 (package! mixed-pitch)
 
-(package! impatient-mode)
+(package! eldoc-box)
+(package! company-box)

@@ -87,8 +87,13 @@
 
 ;; Company box
 (after! company-box
-  (setq company-box-doc-frame-parameters
-        '((internal-border-width . 0))))
+  (setq company-box-show-single-candidate t)
+  (setq company-box-doc-frame-parameters '((internal-border-width . 2)))
+  (company-box-mode 1))
+
+;; Stop Eldoc from printing diagnostic/documentation text in the echo area
+(after! eldoc
+  (setq eldoc-display-functions (delq 'eldoc-display-in-echo-area eldoc-display-functions)))
 
 ;; Custom dashboard
 (use-package! dashboard
@@ -122,38 +127,3 @@
   (setq dashboard-set-file-icons t)
   (setq dashboard-set-footer t)
   (setq dashboard-footer-messages '("Happy hacking with Emacs!")))
-
-;; Markdown
-(use-package! impatient-mode
-  :commands impatient-mode)
-
-;; Dape
-(use-package! dape
-  :after nix
-  :config
-  (setq dape-buffer-window-arrangment 'right)
-
-  (add-to-list 'dape-configs
-               `(node-attach
-                 modes (js-mode js-ts-mode typescript-mode typescript-ts-mode tsx-ts-mode)
-                 command "node"
-                 command-args ("-e" "console.log('using existing --inspect process')")
-                 port 9229
-                 :type "pwa-node"
-                 :request "attach"
-                 :cwd (lambda () (projectile-project-root))
-                 :sourceMaps t
-                 :skipFiles ["<node_internals>/**" "**/node_modules/**"]))
-
-  (add-to-list 'dape-configs
-               `(nextjs-dev
-                 modes (js-mode js-ts-mode typescript-mode typescript-ts-mode tsx-ts-mode)
-                 command "pnpm"
-                 command-args ("run" "dev")
-                 port 9229
-                 :type "pwa-node"
-                 :request "launch"
-                 :cwd (lambda () (projectile-project-root))
-                 :runtimeArgs ["--inspect"]
-                 :sourceMaps t
-                 :skipFiles ["<node_internals>/**" "**/node_modules/**"])))

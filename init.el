@@ -4,6 +4,7 @@
 
        :ui
        deft
+       workspaces
        doom
        modeline
        doom-quit
@@ -57,7 +58,7 @@
        projectile
        (magit +forge)
        biblio
-       (debugger +dape)
+       ;; (debugger +dape)
        direnv
        docker
        editorconfig
