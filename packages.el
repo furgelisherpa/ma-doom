@@ -1,17 +1,13 @@
 (package! evil-escape :disable t)
 
 (package! ef-themes)
+
+(package! agenix
+  :recipe (:host github
+           :repo "t4ccer/agenix.el")
+  :pin "70026ee36b86381e26d6e4505ec7836ebbe95e53")
+
 (package! dashboard)
+(package! apheleia)
 
-(package! tldr)
-(package! ascii-art-to-unicode)
-
-(package! dotenv-mode)
-(package! move-text)
-(package! origami)
-(package! deadgrep)
-(package! sql-indent)
-(package! mixed-pitch)
-
-(package! eldoc-box)
-(package! company-box)
+(package! nov)
